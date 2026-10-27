@@ -10,5 +10,4 @@ const schema = new mongoose.Schema(
   { collection: "loadtest_auth_key", timestamps: true }
 );
 
-export default mongoose.models.LoadtestAuthKey
-  ?? mongoose.model("LoadtestAuthKey", schema);
+export default mongoose.models.LoadtestAuthKey ?? mongoose.model("LoadtestAuthKey", schema);

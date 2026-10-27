@@ -17,6 +17,15 @@ dotenv.config();
 export const app = express();
 app.use(express.json());
 
+const API_KEY_PATTERN = /^(?:[A-Za-z0-9_-]{22}|[a-f0-9]{64})$/;
+
+app.param("apiKey", (request, response, next, apiKey) => {
+  if (!API_KEY_PATTERN.test(apiKey)) {
+    return response.status(400).json({ error: "Invalid API key format" });
+  }
+  return next();
+});
+
 app.get("/health", (_request, response) => {
   response.json({ status: "ok" });
 });

@@ -17,10 +17,10 @@ export async function connectDB() {
 
 // Create a new API key
 export async function createApiKey(projectName, email, validityDays = 30) {
-  const apiKey = crypto.randomBytes(32).toString("hex");
+  // 16 random bytes (128-bit) as base64url -> 22 characters
+  const apiKey = crypto.randomBytes(16).toString("base64url");
 
-  const validity = new Date();
-  validity.setDate(validity.getDate() + validityDays);
+  const validity = new Date(Date.now() + validityDays * 24 * 60 * 60 * 1000);
 
   return await LoadtestAuthKey.create({
     apiKey,
