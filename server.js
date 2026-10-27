@@ -119,7 +119,7 @@ app.use((error, _request, response, _next) => {
 });
 
 export async function startServer() {
-  const port = Number(process.env.PORT ?? 3000);
+  const port = Number(process.env.PORT ?? 8000);
   if (!Number.isInteger(port) || port < 1 || port > 65535) {
     throw new Error("PORT must be an integer between 1 and 65535");
   }
